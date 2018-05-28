@@ -1,6 +1,7 @@
 #ifndef CAT_H
 #define CAT_H
 #include "extra.h"
+#include "level.h"
 
 class Cat{
     public:
@@ -11,13 +12,13 @@ class Cat{
         int getX();
         int getY();
         void handleEvent(SDL_Event &e);
-        void move();
+        void move(int screenSize, Level l);
         SDL_Texture* getTexture();
         SDL_Rect* getclip();
     private:
         SDL_Texture *catTexture;
         SDL_Rect clips[2];
-        int mX, mY;
+        int mX, mY, width, height;
         int mVelX, mVelY;
         int useClip;
 };

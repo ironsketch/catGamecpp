@@ -1,10 +1,16 @@
 #include "cat.h"
+#include "level.h"
 
 int main(){
     Extra extra;
     extra.gettingStarted();
+    
     string catLoc = "src/gifcat_small.png";
     Cat catplayer(extra.loadTexture(catLoc, extra.getRen()));
+    
+    string grndLoc = "src/grass.png";
+    Level level1(extra.loadTexture(grndLoc, extra.getRen()), extra.getHeight());
+    
     string backgroundImage = "src/sky.png";
     SDL_Texture *bck = extra.loadTexture(backgroundImage, extra.getRen());
     if(bck == nullptr){
@@ -30,9 +36,10 @@ int main(){
         }
         SDL_RenderClear(extra.getRen());
         extra.renderTexture(bck, extra.getRen(), 0, 0, extra.getWidth(), extra.getHeight());
+        level1.rend(extra, extra.getWidth());
         extra.renderTexture(catplayer.getTexture(), extra.getRen(), catplayer.getX(), catplayer.getY(), catplayer.getclip());
         SDL_RenderPresent(extra.getRen());
-        catplayer.move();
+        catplayer.move(extra.getWidth(), level1);
     }
     extra.destroyer(catplayer.getTexture());
     extra.destroyer(bck);
