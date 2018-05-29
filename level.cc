@@ -4,29 +4,29 @@ using namespace std;
 
 Level::Level(SDL_Texture *tex, int screenHeight){
     ground = tex;
-    SDL_QueryTexture(ground, NULL, NULL, &width, &height);
-    mY = screenHeight - height;
-    mX = 0;
+    SDL_QueryTexture(ground, NULL, NULL, &groundwidth, &groundheight);
+    groundY = screenHeight - groundheight;
+    groundX = 0;
 }
 
 void Level::move(int newx){
-    mX += newx;
+    groundX += newx;
 }
 
 int Level::getX(){
-    return mX;
+    return groundX;
 }
 
 int Level::getY(){
-    return mY;
+    return groundY;
 }
 
-void Level::rend(Extra ex, int screenWidth){
+void Level::rend(Extra ex){
     //if(abs(mX) > width){
      //   mX /= width;
     //}
-    for(int i = mX; i < screenWidth; i += width){
-        ex.renderTexture(ground, ex.getRen(), i, mY, nullptr);    
+    for(int i = groundX; i < ex.getWidth(); i += groundwidth){
+        ex.renderTexture(ground, ex.getRen(), i, groundY, nullptr);    
     }
 }
 

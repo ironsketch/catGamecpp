@@ -36,7 +36,7 @@ int main(){
         }
         SDL_RenderClear(extra.getRen());
         extra.renderTexture(bck, extra.getRen(), 0, 0, extra.getWidth(), extra.getHeight());
-        level1.rend(extra, extra.getWidth());
+        level1.rend(extra);
         extra.renderTexture(catplayer.getTexture(), extra.getRen(), catplayer.getX(), catplayer.getY(), catplayer.getclip());
         SDL_RenderPresent(extra.getRen());
         catplayer.move(extra.getWidth(), level1);

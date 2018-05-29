@@ -8,11 +8,11 @@ class Level{
         void move(int newx);
         int getX();
         int getY();
-        void rend(Extra ex, int screenWidth);
+        void rend(Extra ex);
         SDL_Texture* getTexture();
     private:
         SDL_Texture *ground;
-        int mX, mY, width, height;
+        int groundX, groundY, groundwidth, groundheight;
 };
 
 #endif

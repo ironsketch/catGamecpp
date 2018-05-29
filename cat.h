@@ -9,6 +9,7 @@ class Cat{
         static const int CAT_HEIGHT = 50;
         static const int CAT_VEL = 3;
         Cat(SDL_Texture *tex);
+        int getVel();
         int getX();
         int getY();
         void handleEvent(SDL_Event &e);
@@ -18,7 +19,7 @@ class Cat{
     private:
         SDL_Texture *catTexture;
         SDL_Rect clips[2];
-        int mX, mY, width, height;
+        int catmX, catmY, catwidth, catheight;
         int mVelX, mVelY;
         int useClip;
 };

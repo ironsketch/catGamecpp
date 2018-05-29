@@ -2,31 +2,35 @@
 #include "cat.h"
 
 Cat::Cat(SDL_Texture *catT){
-    mX = 50;
-    mY = 50;
+    catmX = 50;
+    catmY = 50;
     mVelX = 0;
     mVelY = 0;
     useClip = 0;
     catTexture = catT; 
-    SDL_QueryTexture(catTexture, NULL, NULL, &width, &height);
+    SDL_QueryTexture(catTexture, NULL, NULL, &catwidth, &catheight);
 
     clips[0].x = 0;
     clips[0].y = 0;
-    clips[0].w = width / 2;
-    clips[0].h = height;
+    clips[0].w = catwidth / 2;
+    clips[0].h = catheight;
 
-    clips[1].x = width / 2;
+    clips[1].x = catwidth / 2;
     clips[1].y = 0;
-    clips[1].w = width / 2;
-    clips[1].h = height;
+    clips[1].w = catwidth / 2;
+    clips[1].h = catheight;
+}
+
+int Cat::getVel(){
+    return CAT_VEL;
 }
 
 int Cat::getX(){
-    return mX;
+    return catmX;
 }
 
 int Cat::getY(){
-    return mY;
+    return catmY;
 }
 
 void Cat::handleEvent(SDL_Event &e){
@@ -58,11 +62,11 @@ void Cat::handleEvent(SDL_Event &e){
 }
 
 void Cat::move(int screenSize, Level l){
-    if((mX + mVelX > 0) && (mX + mVelX + (width / 2) < (screenSize * .70))){
-        mX += mVelX;
-    } else if(mX + mVelX + (width / 2) >= (screenSize * .70)){
-        l.move(mVelX);
-        mY += mVelY;
+    if((catmX + mVelX > 0) && (catmX + mVelX + (catwidth / 2) < (screenSize * .70))){
+        catmX += mVelX;
+    } else if(catmX + mVelX + (catwidth / 2) >= (screenSize * .70)){
+        l.move(CAT_VEL);
+        catmY += mVelY;
     }
 }
 
