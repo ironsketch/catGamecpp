@@ -42,6 +42,12 @@ int Extra::getWidth(){
     return WIDTH;
 }
 
+void Extra::changeWindowSize(int newWidth, int newHeight){
+    SDL_SetWindowSize(window, newWidth, newWidth);
+    HEIGHT = newHeight;
+    WIDTH = newWidth;
+}
+
 void Extra::sdlError(ostream &os, const string &msg){
     os << msg << " error: " << SDL_GetError() << endl;
 }

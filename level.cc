@@ -1,16 +1,16 @@
 #include "level.h"
 #include <cmath>
-using namespace std;
 
 Level::Level(SDL_Texture *tex, int screenHeight){
     ground = tex;
     SDL_QueryTexture(ground, NULL, NULL, &groundwidth, &groundheight);
     groundY = screenHeight - groundheight;
+    cout << screenHeight << " ground height: " << groundheight << endl;
     groundX = 0;
 }
 
 void Level::move(int newx){
-    groundX += newx;
+    groundX -= newx;
 }
 
 int Level::getX(){
@@ -22,14 +22,19 @@ int Level::getY(){
 }
 
 void Level::rend(Extra ex){
-    //if(abs(mX) > width){
-     //   mX /= width;
-    //}
+    levelCollides.clear();
     for(int i = groundX; i < ex.getWidth(); i += groundwidth){
         ex.renderTexture(ground, ex.getRen(), i, groundY, nullptr);    
+        SDL_Rect *tmp = new SDL_Rect;
+        tmp->x = i; tmp->y = groundY; tmp->w = groundwidth; tmp->h = groundheight;
+        levelCollides.push_back(*tmp);
     }
 }
 
-SDL_Texture* Level::getTexture(){
+SDL_Texture* Level::groundTex(){
     return ground;
+}
+
+vector<SDL_Rect> &Level::getVector(){
+    return levelCollides;
 }
