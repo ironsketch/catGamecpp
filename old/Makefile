@@ -1,6 +1,6 @@
 CXXFLAGS = -std=c++11 -w -framework SDL2 -framework SDL2_image
 CXX = g++
-FLAGS = -std=c++11 -c -w
+FLAGS = -c -w
 all: main.o player.o level.o timer.o extra.o catGame clean
 main.o: main.cc player.h level.h timer.h extra.h
 	$(CXX) $(FLAGS) main.cc

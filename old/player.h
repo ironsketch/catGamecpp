@@ -1,13 +1,12 @@
-#ifndef CAT_H
-#define CAT_H
+#ifndef PLAYER_H
+#define PLAYER_H
 #include <vector>
-#include "extra.h"
 #include "level.h"
 
-class Cat{
+class Player{
     public:
-        static const int CAT_VEL = 5;
-        Cat(SDL_Texture *tex);
+        static const int player_VEL = 5;
+        Player(SDL_Texture *tex);
         int getVel();
         int getX();
         int getY();
@@ -19,13 +18,13 @@ class Cat{
         void gravity(vector<SDL_Rect> &v, int screenHeight);
         bool collided(vector<SDL_Rect> &v);
     private:
-        SDL_Texture *catTexture;
+        SDL_Texture *playerTexture;
         SDL_Rect clips[16];
-        int catmX, catmY, catwidth, catheight;
+        int playermX, playermY, playerwidth, playerheight;
         int mVelX, mVelY;
-        int cat_gravity;
+        int player_gravity;
         int useClip;
-        SDL_Rect catCollision;
+        SDL_Rect playerCollision;
         bool moving = false;
         bool forward = true;
 };

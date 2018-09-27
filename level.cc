@@ -5,7 +5,6 @@ Level::Level(SDL_Texture *tex, int screenHeight){
     ground = tex;
     SDL_QueryTexture(ground, NULL, NULL, &groundwidth, &groundheight);
     groundY = screenHeight - groundheight;
-    cout << screenHeight << " ground height: " << groundheight << endl;
     groundX = 0;
 }
 
